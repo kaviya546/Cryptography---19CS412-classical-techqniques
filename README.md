@@ -23,6 +23,7 @@ from the set of invertible n × n matrices (modulo 26).
 to be done modulo the number of letters instead of modulo 26.
 ```
 ### PROGRAM:
+```
 #include <stdio.h>
 int main()
 {
@@ -43,6 +44,7 @@ printf("Decrypted Cipher Text: %c%c%c\n", dec[0] % 26 + 'A', dec[1] % 26 + 'A', 
 The program is executed successfully
 return 0;
 }
+```
 ###  OUTPUT:
 ![WhatsApp Image 2025-03-19 at 08 16 29_0691a1b8](https://github.com/user-attachments/assets/989efad8-9cfe-4568-bea0-98c050fa24f4)
 ### Result :
