@@ -513,9 +513,7 @@ if(code[i][j]!=0) printf("%c",code[i][j]);
 printf("\n");
 }
 ## OUTPUT:
-OUTPUT:
-Enter a Secret Message wearediscovered
-Enter number of rails 2
-waeicvrderdsoee
+![WhatsApp Image 2025-03-19 at 08 12 30_401a8677](https://github.com/user-attachments/assets/e1c57922-7cb6-4dd7-ac12-6b9c432a552a)
+
 ## RESULT:
 The program is executed successfully
