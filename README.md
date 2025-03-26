@@ -1,84 +1,94 @@
 # Cryptography---19CS412-classical-techqniques
 
+## Vigenere Cipher:
 
-## Caeser Cipher
+Vigenere Cipher using with different key values
 
-Caeser Cipher using with different key values
+## AIM:
 
-# AIM:
-
-To develop a simple C program to implement Caeser Cipher.
-
+To develop a simple C program to implement Vigenere Cipher.
 
 ## DESIGN STEPS:
 
-### Step 1:
+## Step 1:
+Design of Vigenere Cipher algorithnm
 
-Design of Caeser Cipher algorithnm 
-
-### Step 2:
-
+## Step 2:
 Implementation using C or pyhton code
 
-### Step 3:
+## Step 3:
+Testing algorithm with different key values.
 
-Testing algorithm with different key values. 
-
-## PROGRAM:
+## Program :
 ```
 #include <stdio.h>
 #include <string.h>
+#include <ctype.h>
 
-int main()
- {
-    int key;
-    char s[1000];
+#define MAX_LENGTH 100
 
-    printf("Enter a plaintext to encrypt:\n");
-    fgets(s, sizeof(s), stdin);
-    printf("Enter key:\n");
-    scanf("%d", &key);
+int main() 
+{
+    char input[MAX_LENGTH];
+    char key[MAX_LENGTH];
+    char result[MAX_LENGTH];
 
-    int n = strlen(s);
+    printf("Enter the text to encrypt: ");
+    fgets(input, MAX_LENGTH, stdin);
+    input[strcspn(input, "\n")] = '\0'; 
 
-    for (int i = 0; i < n; i++) 
+    printf("Enter the key: ");
+    fgets(key, MAX_LENGTH, stdin);
+    key[strcspn(key, "\n")] = '\0'; 
+
+    int inputLength = strlen(input);
+    int keyLength = strlen(key);
+
+    for (int i = 0, j = 0; i < inputLength; ++i) 
     {
-        char c = s[i];
-        if (c >= 'a' && c <= 'z') 
+        char currentChar = input[i];
+
+        if (isalpha(currentChar))
         {
-            s[i] = 'a' + (c - 'a' + key) % 26;
+            int shift = toupper(key[j % keyLength]) - 'A';
+            int base = isupper(currentChar) ? 'A' : 'a';
+
+            result[i] = ((currentChar - base + shift + 26) % 26) + base;
+            ++j;
         }
-        else if (c >= 'A' && c <= 'Z')
+        else
         {
-            s[i] = 'A' + (c - 'A' + key) % 26;
+            result[i] = currentChar;
         }
     }
-    printf("Encrypted message: %s\n", s);
 
-    for (int i = 0; i < n; i++)
+    result[inputLength] = '\0';
+    printf("Encrypted text: %s\n", result);
+
+    for (int i = 0, j = 0; i < inputLength; ++i) 
     {
-        char c = s[i];
-        if (c >= 'a' && c <= 'z') 
+        char currentChar = result[i];
+
+        if (isalpha(currentChar)) 
         {
-            s[i] = 'a' + (c - 'a' - key + 26) % 26; 
-        }
-        else if (c >= 'A' && c <= 'Z')
-        {
-            s[i] = 'A' + (c - 'A' - key + 26) % 26; 
+            int shift = toupper(key[j % keyLength]) - 'A';
+            int base = isupper(currentChar) ? 'A' : 'a';
+
+            result[i] = ((currentChar - base - shift + 26) % 26) + base;
+            ++j;
         }
     }
-    printf("Decrypted message: %s\n", s);
+
+    result[inputLength] = '\0';
+    printf("Decrypted text: %s\n", result);
 
     return 0;
 }
-
 ```
+## Output:
 
-## OUTPUT:
-![WhatsApp Image 2025-03-19 at 08 20 43_f563ac00](https://github.com/user-attachments/assets/806e9ebe-0081-4659-ae98-efc8db480054)
+![WhatsApp Image 2025-03-26 at 08 20 24_8bcc8c70](https://github.com/user-attachments/assets/c435aca4-ad2e-401b-94e4-dbd1a5dd0c29)
 
+## Result :
 
-
-
-## RESULT:
-The program is executed successfully
+The program executed successfully.
